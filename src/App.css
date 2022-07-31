@@ -1,38 +1,300 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.body {
+  background-color: lightskyblue; }
+
+.GridArea {
+  height: 100%;
+  display: grid;
+  grid-template-areas: "nav " "main" "footer";
+  grid-template-columns: auto;
+  grid-template-rows: auto 100% 75px; }
+
+.nav {
+  grid-area: nav;
+  background-color: #bf930d;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: auto;
+  width: 100%;
+  box-shadow: 0px 2px 19px 0px rgba(0, 0, 0, 0.75);
+  margin-bottom: 10px; }
+
+.paciente__logo {
+  width: 50px;
+  height: 50px; }
+
+.icon {
+  position: relative; }
+
+.nav__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: auto;
+  list-style: none;
+  margin-bottom: 20px;
+  margin-top: 20px; }
+
+.nav__item {
+  font-size: 25px;
+  display: inline-block;
+  margin-left: 20px;
+  transition: all 2s ease; }
+
+.nav__link {
+  font-family: "Anton", sans-serif;
+  color: black;
+  text-decoration: none; }
+
+.nav__item:hover {
+  transform: scale(1.1); }
+
+.badge {
+  position: absolute;
+  top: 0;
+  left: 55%;
+  background: aliceblue;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-weight: bold;
+  padding: 2px;
+  box-shadow: 0px 2px 19px 0px rgba(0, 0, 0, 0.75); }
+
+.main {
+  grid-area: main;
+  /*   margin-bottom: 100px; */ }
+
+.footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  height: 50px;
+  color: #ebeff2;
+  background-color: #0d0d0d;
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
+
+.items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   text-align: center;
-}
+  margin: 10px;
+  justify-content: center; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.item {
+  margin: 15px; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.iCard {
+  width: 300px;
+  height: auto;
+  background-color: aliceblue;
+  border: 1px solid black;
+  border-radius: 20px 20px 20px 20px;
+  border: 0px solid #000000;
+  box-shadow: 10px 11px 26px -3px rgba(0, 0, 0, 0.86); }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.iCard__img {
+  padding-top: 5px;
+  width: auto;
+  height: 262px; }
+
+.iCard__body {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  justify-content: center;
+  align-items: center; }
+
+.iCard__title {
+  border: 1px solid black;
+  width: 70%;
+  border-radius: 41px 11px 41px 11px;
+  margin-bottom: 5px; }
+
+.iCard__text {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 5px; }
+
+.iCard__btn {
+  margin-top: 4px;
+  box-shadow: inset -2px 5px 3px 0px #91b8b3;
+  background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+  background-color: #768d87;
+  border-radius: 11px;
+  border: 1px solid #566963;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 9px 23px;
+  text-decoration: none;
+  text-shadow: 0px 3px 0px #2b665e; }
+
+.iCard__btn:hover {
+  background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+  background-color: #6c7c7c; }
+
+.iCard__btn:hover:active {
+  position: relative;
+  top: 1px; }
+
+.detalleProducto {
+  grid-area: main;
+  height: 100%;
+  display: grid;
+  grid-template-areas: "imagenProducto compraProducto" "detalleProducto detalleProducto";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto; }
+
+.detalleProducto__img {
+  grid-area: imagenProducto;
+  display: block;
+  text-align: center; }
+  .detalleProducto__img img {
+    height: 450px;
+    width: auto; }
+
+.detalleProducto__compra {
+  grid-area: compraProducto;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.detalleProducto__compraInt {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 30px; }
+  .detalleProducto__compraInt .bodega {
+    color: #6a581c;
+    margin-bottom: 5px; }
+  .detalleProducto__compraInt .precio {
+    font-size: 25px;
+    margin-bottom: 5px; }
+
+.detalleProducto__detalles {
+  grid-area: detalleProducto;
+  margin: 5px 5px 50px 5px;
+  border: 1px solid black; }
+
+.detalles {
+  background-color: #bf930d;
+  text-align: center;
+  box-shadow: inset 0px -17px 24px -9px rgba(0, 0, 0, 0.44);
+  box-shadow: 0px 12px 20px 9px rgba(0, 0, 0, 0.44);
+  margin-bottom: 20px; }
+
+.tablas {
+  margin: 20px;
+  display: grid;
+  grid-template-areas: "tabla1 tabla2";
+  grid-template-columns: 0.5fr 1fr; }
+
+.table1,
+.table2 {
+  grid-area: tabla1;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 10px 5px; }
+  .table1 tr,
+  .table2 tr {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin-right: 10%; }
+  .table1 th,
+  .table2 th {
+    width: 150px; }
+  .table1 td,
+  .table2 td {
+    text-align: center;
+    padding-left: 20px; }
+
+.contadorContainer {
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px; }
+
+.contador {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.btn-cont {
+  font-size: 20px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer; }
+
+.cont {
+  margin-left: 20px;
+  margin-right: 20px; }
+
+.btnAgregar {
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer; }
+
+.cargandoContainer {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  margin-top: 100px; }
 
-.App-link {
-  color: #61dafb;
-}
+.cargando {
+  position: relative;
+  width: 100px;
+  height: 100px; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.cargando:before,
+.cargando:after {
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3) inset; }
+
+.cargando:after {
+  box-shadow: 0 2px 0 #ff3d00 inset;
+  animation: rotate 2s linear infinite; }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0); }
+  100% {
+    transform: rotate(360deg); } }
