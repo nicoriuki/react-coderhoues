@@ -4,35 +4,20 @@ import ItemDetail from "./ItemDetail";
 import Cargando from "./../common/Cargando";
 const ItemDetalContainer = () => {
   const [productos, setProductos] = useState([]);
-  const [detail, setDetail] = useState([]);
 
   useEffect(() => {
-    let misProductos = new Promise((resolve) => {
+    const miPromesa = new Promise((res, rej) => {
       setTimeout(() => {
-        const producto = productosHarcode;
-        return resolve(producto);
+        res(productosHarcode.vinos.filter((producto) => producto.id === 12));
       }, 2000);
     });
-
-    function obtenerProductos(listaProducto) {
-      return listaProducto.then((producto) => {
-        return producto.vinos;
-      });
-    }
-
-    const productosObtenidos = obtenerProductos(misProductos);
-
-    productosObtenidos.then(setProductos);
+    miPromesa.then((res) => {
+      setProductos(res);
+    });
   }, []);
 
-  useEffect(() => {
-    if (productos.vinos !== 0) {
-      let item = productos.find((item) => item.id === 12);
-      setDetail(item);
-    }
-  }, [productos]);
-
-  return detail === undefined ? <Cargando /> : <ItemDetail detail={detail} />;
+  console.log(productos);
+  return productos.length === 0 ? <Cargando /> : <ItemDetail detail={productos[0]} />;
 };
 
 export default ItemDetalContainer;
