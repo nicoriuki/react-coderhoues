@@ -1,25 +1,25 @@
 import AgregarItem from "./AgregarItem";
 
 const ItemDetail = ({ detail }) => {
-  console.log({ detail });
+  const { imagen, nombre, bodega, precio, stock, varietal, region, valle, crianza, tiempo, enologo, descripcion, notas } = detail;
   return (
     <>
       <div className="detalleProducto">
         <div className="detalleProducto__img">
-          <img src={detail.imagen} alt={detail.nombre} />
+          <img src={imagen} alt={nombre} />
         </div>
         <div className="detalleProducto__compra">
           <div className="detalleProducto__compraInt">
             <div>
-              <h2 className="bodega">{detail.bodega}</h2>
-              <h3 className="nombre">{detail.nombre}</h3>
+              <h2 className="bodega">{bodega}</h2>
+              <h3 className="nombre">{nombre}</h3>
             </div>
             <div>
               <div>
-                <p className="precio">${detail.precio}</p>
+                <p className="precio">${precio}</p>
               </div>
             </div>
-            <AgregarItem initial={1} stockItems={detail.stock} />
+            <AgregarItem initial={1} stockItems={stock} />
           </div>
         </div>
         <div className="detalleProducto__detalles">
@@ -37,35 +37,35 @@ const ItemDetail = ({ detail }) => {
                     </tr>
                     <tr>
                       <th>Nombre: </th>
-                      <td>{detail.nombre}</td>
+                      <td>{nombre}</td>
                     </tr>
                     <tr>
                       <th>Bodega</th>
-                      <td>{detail.bodega}</td>
+                      <td>{bodega}</td>
                     </tr>
                     <tr>
                       <th>Varietal</th>
-                      <td>{detail.varietal}</td>
+                      <td>{varietal}</td>
                     </tr>
                     <tr>
                       <th>Region</th>
-                      <td>{detail.region}</td>
+                      <td>{region}</td>
                     </tr>
                     <tr>
                       <th>Valle</th>
-                      <td>{detail.valle}</td>
+                      <td>{valle}</td>
                     </tr>
                     <tr>
                       <th>Crianza</th>
-                      <td>{detail.crianza}</td>
+                      <td>{crianza}</td>
                     </tr>
                     <tr>
                       <th>Tiempo de Crianza</th>
-                      <td>{detail.tiempo}</td>
+                      <td>{tiempo}</td>
                     </tr>
                     <tr>
                       <th>Enologo</th>
-                      <td>{detail.enologo}</td>
+                      <td>{enologo}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -75,12 +75,12 @@ const ItemDetail = ({ detail }) => {
                   <tbody>
                     <tr>
                       <th>Descripcion</th>
-                      <td>{detail.descripcion}</td>
+                      <td>{descripcion}</td>
                     </tr>
 
                     <tr>
                       <th>Notas</th>
-                      <td>{detail.notas}</td>
+                      <td>{notas}</td>
                     </tr>
                   </tbody>
                 </table>

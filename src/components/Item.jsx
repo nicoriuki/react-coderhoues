@@ -1,27 +1,30 @@
 import AgregarItem from "./AgregarItem";
+import { Link } from "react-router-dom";
 
 const Item = ({ item }) => {
+  const { imagen, nombre, precio, stock, id } = item;
   let initial = 1;
+  console.log(id);
   return (
     <>
       <article className="item">
         <div className="iCard">
           <div>
-            <img className="iCard__img" src={item.imagen} alt={item.nombre} />
+            <img className="iCard__img" src={imagen} alt={nombre} />
           </div>
           <div className="iCard__body">
-            <h5 className="iCard__title">
-              {item.nombre}
-              {"  "}
-              <span>${item.precio}</span>
-            </h5>
+            <h5 className="iCard__title">{nombre}</h5>
+            <h5>${precio}</h5>
             <div>
-              <p className="iCard__text ">{item.stock}</p>
+              <p className="iCard__text ">{stock}</p>
             </div>
-            <button className="iCard__btn">Detalle</button>
+
+            <Link className="iCard__btn" to={"/id/" + id}>
+              Detalle
+            </Link>
           </div>
           <div>
-            <AgregarItem stockItems={item.stock} initial={initial} />
+            <AgregarItem stockItems={stock} initial={initial} />
           </div>
         </div>
       </article>

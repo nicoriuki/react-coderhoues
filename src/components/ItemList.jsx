@@ -5,7 +5,7 @@ const ItemList = ({ data }) => {
     <>
       <main className="main">
         <section className="items">
-          {data.vinos.map((item) => (
+          {data.map((item) => (
             <Item key={item.id} item={item} />
           ))}
         </section>
