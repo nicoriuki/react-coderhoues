@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# Vinoteca
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Proyecto para el Curso de React Js De coder house
+
+## Nicolas Marquez
+
+### 02/08/2022
+
+- Las categorias estan en el menu despegable de productos
+- y el boton de detalle al itemDetailContainer
 
 ## Available Scripts
 
