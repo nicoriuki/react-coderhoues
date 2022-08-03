@@ -1,10 +1,10 @@
 import AgregarItem from "./AgregarItem";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Item = ({ item }) => {
+  const [compra, setCompra] = useState();
   const { imagen, nombre, precio, stock, id } = item;
-  let initial = 1;
-  console.log(id);
   return (
     <>
       <article className="item">
@@ -18,17 +18,19 @@ const Item = ({ item }) => {
             <div>
               <p className="iCard__text ">{stock}</p>
             </div>
-
             <Link className="iCard__btn" to={"/id/" + id}>
               Detalle
             </Link>
           </div>
-          <div>
-            <AgregarItem stockItems={stock} initial={initial} />
-          </div>
+          {!compra ? (
+            <AgregarItem initial={1} stockItems={stock} setCompra={setCompra} />
+          ) : (
+            <Link to={"/cart/" + compra}>
+              <button>Terminar Compra</button>
+            </Link>
+          )}
         </div>
       </article>
-      ;
     </>
   );
 };

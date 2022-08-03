@@ -14,11 +14,8 @@ const ItemDetalContainer = () => {
     });
     miPromesa.then((res) => {
       setProductos(res);
-      console.log(productos);
     });
   }, []);
-
-  console.log(productId);
   return productos.length === 0 ? <Cargando /> : <ItemDetail detail={productos[0]} />;
 };
 
