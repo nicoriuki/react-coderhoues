@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import productosHarcode from "../helper/productos.json";
 import ItemDetail from "./ItemDetail";
-import Cargando from "./../common/Cargando";
+import Cargando from "../common/Cargando";
 import { useParams } from "react-router-dom";
-const ItemDetalContainer = () => {
+const ItemDetailContainer = () => {
   const [productos, setProductos] = useState([]);
   const { productId } = useParams();
   useEffect(() => {
@@ -19,4 +19,4 @@ const ItemDetalContainer = () => {
   return productos.length === 0 ? <Cargando /> : <ItemDetail detail={productos[0]} />;
 };
 
-export default ItemDetalContainer;
+export default ItemDetailContainer;

@@ -4,7 +4,7 @@ import Cargando from "./../common/Cargando";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 
-const ItemListConteiner = () => {
+const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
   const { categoria } = useParams();
   useEffect(() => {
@@ -25,4 +25,4 @@ const ItemListConteiner = () => {
 
   return productos.length === 0 ? <Cargando /> : <ItemList data={productos} />;
 };
-export default ItemListConteiner;
+export default ItemListContainer;
