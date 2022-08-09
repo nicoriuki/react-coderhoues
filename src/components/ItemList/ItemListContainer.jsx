@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import productosHarcode from "../../src/helper/productos.json";
-import Cargando from "./../common/Cargando";
+import productosHarcode from "../../../src/helper/productos.json";
+import Cargando from "./../../common/Cargando";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 

@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-
-const AgregarItem = ({ initial, stockItems, setCompra }) => {
+import { useState, useEffect, useContext } from "react";
+import { myContext } from "../components/CartContext";
+const AgregarItem = ({ initial, producto, setCompra }) => {
   const [items, setItems] = useState(initial);
-  const [stock, setStock] = useState(stockItems);
+  const [stock, setStock] = useState(producto.stock);
+  const { addItem, isInCart } = useContext(myContext);
 
   useEffect(() => {
     stock === 0 ? setItems(0) : setItems(initial);
@@ -12,6 +13,7 @@ const AgregarItem = ({ initial, stockItems, setCompra }) => {
     setStock(stock - items);
     alert(`se Agregaron ${items} Productos`);
     setCompra(items);
+    isInCart(producto.id) === false ? addItem(producto.id, producto.nombre, items, producto.precio) : console.log("ya esta en el carrito");
   }
 
   function sumar() {

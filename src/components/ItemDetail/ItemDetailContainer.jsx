@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import productosHarcode from "../helper/productos.json";
+import productosHarcode from "../../helper/productos.json";
 import ItemDetail from "./ItemDetail";
-import Cargando from "../common/Cargando";
+import Cargando from "../../common/Cargando";
 import { useParams } from "react-router-dom";
 const ItemDetailContainer = () => {
   const [productos, setProductos] = useState([]);
