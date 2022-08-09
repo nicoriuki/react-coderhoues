@@ -7,7 +7,11 @@ export default function CartContext({ children }) {
 
   const addItem = (id, nombre, cantidad, precio) => {
     const nuevoProd = { id, nombre, cantidad, precio };
-    setCart([...cart, nuevoProd]);
+    if (isInCart(id)) {
+      console.log("ya esta en el carrito , Se aumenta la cantidad");
+    } else {
+      setCart([...cart, nuevoProd]);
+    }
   };
   useEffect(() => {
     let cant = 0;
@@ -20,10 +24,16 @@ export default function CartContext({ children }) {
   const clear = () => {
     setCart([]);
   };
-  const isInCart = (id) => {
-    cart.find((item) => (item.id === id ? true : false));
-  };
 
+  const isInCart = (id) => {
+    let productos = [...cart];
+    const found = productos.find((item) => item.id === id);
+    if (found) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   return (
     <>
       <myContext.Provider value={{ cart, cantidad, setCart, addItem, clear, removeItem, isInCart }}>{children}</myContext.Provider>

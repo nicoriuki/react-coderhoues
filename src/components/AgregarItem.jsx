@@ -13,7 +13,7 @@ const AgregarItem = ({ initial, producto, setCompra }) => {
     setStock(stock - items);
     alert(`se Agregaron ${items} Productos`);
     setCompra(items);
-    isInCart(producto.id) === false ? addItem(producto.id, producto.nombre, items, producto.precio) : console.log("ya esta en el carrito");
+    addItem(producto.id, producto.nombre, items, producto.precio);
   }
 
   function sumar() {
