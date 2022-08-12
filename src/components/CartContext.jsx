@@ -5,13 +5,22 @@ export default function CartContext({ children }) {
   const [cart, setCart] = useState([]);
   const [cantidad, setCantidad] = useState(0);
 
-  const addItem = (id, nombre, cantidad, precio) => {
-    const nuevoProd = { id, nombre, cantidad, precio };
+  const addItem = (id, nombre, cantidad, precio, varietal, stock) => {
+    const nuevoProd = { id, nombre, cantidad, precio, varietal, stock };
     if (isInCart(id)) {
-      console.log("ya esta en el carrito , Se aumenta la cantidad");
+      modificarCantidad(id, cantidad);
     } else {
       setCart([...cart, nuevoProd]);
     }
+  };
+  const modificarCantidad = (id, cantidad) => {
+    let index = cart.findIndex((el) => el.id === id);
+    let prod = cart[index];
+    prod.cantidad = prod.cantidad + cantidad;
+    const newCart = [...cart];
+    newCart.splice(index, 1, prod);
+
+    setCart([...newCart]);
   };
   useEffect(() => {
     let cant = 0;
@@ -36,7 +45,7 @@ export default function CartContext({ children }) {
   };
   return (
     <>
-      <myContext.Provider value={{ cart, cantidad, setCart, addItem, clear, removeItem, isInCart }}>{children}</myContext.Provider>
+      <myContext.Provider value={{ cart, cantidad, setCart, addItem, clear, removeItem, isInCart, modificarCantidad }}>{children}</myContext.Provider>
     </>
   );
 }

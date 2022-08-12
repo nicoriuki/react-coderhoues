@@ -1,6 +1,6 @@
 import AgregarItem from "../AgregarItem";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import Terminar from "./../Terminar";
 
 const ItemDetail = ({ detail }) => {
   const { imagen, nombre, bodega, precio, stock, varietal, region, valle, crianza, tiempo, enologo, descripcion, notas, id } = detail;
@@ -23,13 +23,7 @@ const ItemDetail = ({ detail }) => {
                 <p className="precio">${precio}</p>
               </div>
             </div>
-            {!compra ? (
-              <AgregarItem initial={1} producto={{ stock, nombre, id, precio }} setCompra={setCompra} />
-            ) : (
-              <Link to={"/cart/"}>
-                <button>Terminar Compra</button>
-              </Link>
-            )}
+            {!compra ? <AgregarItem initial={1} producto={{ stock, nombre, id, precio, varietal }} setCompra={setCompra} /> : <Terminar />}
           </div>
         </div>
         <div className="detalleProducto__detalles">

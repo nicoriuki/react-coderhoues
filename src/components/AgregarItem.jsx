@@ -3,7 +3,7 @@ import { myContext } from "../components/CartContext";
 const AgregarItem = ({ initial, producto, setCompra }) => {
   const [items, setItems] = useState(initial);
   const [stock, setStock] = useState(producto.stock);
-  const { addItem, isInCart } = useContext(myContext);
+  const { addItem } = useContext(myContext);
 
   useEffect(() => {
     stock === 0 ? setItems(0) : setItems(initial);
@@ -13,7 +13,7 @@ const AgregarItem = ({ initial, producto, setCompra }) => {
     setStock(stock - items);
     alert(`se Agregaron ${items} Productos`);
     setCompra(items);
-    addItem(producto.id, producto.nombre, items, producto.precio);
+    addItem(producto.id, producto.nombre, items, producto.precio, producto.varietal, producto.stock);
   }
 
   function sumar() {
