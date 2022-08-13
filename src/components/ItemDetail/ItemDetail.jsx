@@ -1,5 +1,5 @@
 import AgregarItem from "../AgregarItem";
-import React, { useState } from "react";
+import { useState } from "react";
 import Terminar from "./../Terminar";
 
 const ItemDetail = ({ detail }) => {

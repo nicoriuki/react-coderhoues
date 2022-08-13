@@ -11,7 +11,8 @@
 
 # production
 /build
-
+/src/components/Subirp.jsx
+/src/components/Prueba.jsx
 # misc
 .DS_Store
 .env.local

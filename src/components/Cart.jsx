@@ -35,13 +35,13 @@ const Cart = () => {
                   <td>{item.varietal}</td>
                   <td>
                     <div className="btnCantidad">
-                      <div disabled={item.cantidad === 0} onClick={() => modificarCantidad(item.id, -1)}>
+                      <button disabled={item.cantidad === 0} onClick={() => modificarCantidad(item.id, -1)}>
                         -
-                      </div>
+                      </button>
                       <p>{item.cantidad}</p>
-                      <div disabled={item.cantidad >= item.stock} onClick={() => modificarCantidad(item.id, 1)}>
+                      <button disabled={item.cantidad >= item.stock} onClick={() => modificarCantidad(item.id, 1)}>
                         +
-                      </div>
+                      </button>
                     </div>
                   </td>
                   <td>${item.precio}</td>

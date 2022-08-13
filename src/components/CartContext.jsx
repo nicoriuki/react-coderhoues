@@ -19,7 +19,6 @@ export default function CartContext({ children }) {
     prod.cantidad = prod.cantidad + cantidad;
     const newCart = [...cart];
     newCart.splice(index, 1, prod);
-
     setCart([...newCart]);
   };
   useEffect(() => {

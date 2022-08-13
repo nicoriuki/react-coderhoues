@@ -1,7 +1,25 @@
 import CartWidget from "./CartWidget";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { Categorias } from "./Categorias";
+
 const NavBar = () => {
+  const [categorias, setCategorias] = useState([]);
+  useEffect(() => {
+    const db = getFirestore();
+
+    const refAcollection = collection(db, "categorias");
+    getDocs(refAcollection).then((res) => {
+      let objeto = res.docs;
+
+      objeto = objeto.map((item) => {
+        return { ...item.data(), id: item.id };
+      });
+      setCategorias(objeto);
+    });
+  }, []);
   return (
     <nav className="nav">
       <div className="nav__logo">
@@ -17,38 +35,7 @@ const NavBar = () => {
         </li>
         <li className="nav__item nav__link menuDes">
           Productos
-          <ul className="ulDespegable ">
-            <li className="liDespegable nav__link">
-              <Link className="nav__link nLink" to={"/categoria/Malbec"}>
-                Malbec
-              </Link>
-            </li>
-            <li className="liDespegable nav__link">
-              <Link className="nav__link nLink" to={"/categoria/Cabernet-Sauvignon"}>
-                Cabernet Sauvignon
-              </Link>
-            </li>
-            <li className="liDespegable  nav__link">
-              <Link className="nav__link nLink" to={"/categoria/Pinot-Noir"}>
-                Pinot Noir
-              </Link>
-            </li>
-            <li className="liDespegable  nav__link">
-              <Link className="nav__link nLink" to={"/categoria/Blend"}>
-                Blend
-              </Link>
-            </li>
-            <li className="liDespegable  nav__link">
-              <Link className="nav__link nLink" to={"/categoria/Sauvignon-Blanc"}>
-                Sauvignon Blanc
-              </Link>
-            </li>
-            <li className="liDespegable  nav__link">
-              <Link className="nav__link nLink" to={"/categoria/Chardonnay"}>
-                Chardonnay
-              </Link>
-            </li>
-          </ul>
+          <ul className="ulDespegable ">{categorias && categorias.map((item) => <Categorias key={item.id} categorias={item} />)}</ul>
         </li>
         <li className="nav__item">
           <Link to={"/nosotros"} className="nav__link ">
