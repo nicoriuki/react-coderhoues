@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import papelera from "../assets/papelera.png";
 import botella from "../assets/botella-vacia.jpg";
 const Cart = () => {
-  const { removeItem, cart, clear, modificarCantidad } = useContext(myContext);
-  const total = cart.reduce((total, cartItem) => total + cartItem.precio * cartItem.cantidad, 0);
+  const { removeItem, cart, clear, modificarCantidad, total } = useContext(myContext);
+
   return (
     <>
       {cart.length === 0 ? (
@@ -64,6 +64,11 @@ const Cart = () => {
           <div style={{ textAlign: "center" }}>
             <Link to={"/cart/"} onClick={() => clear()}>
               <button className="btnVaciar">Vaciar Carro</button>
+            </Link>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <Link to={"/checkout/"}>
+              <button className="btnVaciar">Terminar Compra</button>
             </Link>
           </div>
         </div>

@@ -1,9 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { myContext } from "../components/CartContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 const AgregarItem = ({ initial, producto, setCompra }) => {
   const [items, setItems] = useState(initial);
   const [stock, setStock] = useState(producto.stock);
   const { addItem } = useContext(myContext);
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     stock === 0 ? setItems(0) : setItems(initial);
@@ -11,7 +14,16 @@ const AgregarItem = ({ initial, producto, setCompra }) => {
 
   function onAdd() {
     setStock(stock - items);
-    alert(`se Agregaron ${items} Productos`);
+    MySwal.fire({
+      title: <strong>Se Agrego al Carrito</strong>,
+      html: (
+        <i>
+          {items} {producto.nombre} {producto.varietal} por un total de ${items * producto.precio}
+        </i>
+      ),
+      icon: "success",
+    });
+
     setCompra(items);
     addItem(producto.id, producto.nombre, items, producto.precio, producto.varietal, producto.stock);
   }

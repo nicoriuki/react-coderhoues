@@ -407,6 +407,7 @@ tfoot {
     text-align: right; }
 
 .btnVaciar {
+  margin-top: 15px;
   padding: 10px;
   font-size: 15px;
   border: 1px solid black;
@@ -438,3 +439,28 @@ tfoot {
   .botellaVacias img {
     width: 275px;
     height: auto; }
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .checkout div {
+    text-align: center;
+    margin-top: 20px; }
+
+.checkout-titulo {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 25px; }
+
+.checkout-input {
+  text-align: center;
+  margin-top: 20px; }
+  .checkout-input input {
+    border: 1px solid black;
+    font-size: 20px; }
+
+.checkout-btn {
+  text-align: center;
+  margin-top: 20px; }
