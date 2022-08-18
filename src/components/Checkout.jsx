@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { collection, addDoc, getFirestore, doc, updateDoc } from "firebase/firestore";
 
 const Checkout = () => {
-  const { cart, total } = useContext(myContext);
+  const { cart, total, clear } = useContext(myContext);
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
@@ -19,6 +19,7 @@ const Checkout = () => {
       console.log(res.id);
       cart.map((item) => updateDoc(doc(db, "productos", item.id), { stock: item.stock - item.cantidad }));
     });
+    clear();
   }
 
   return (
