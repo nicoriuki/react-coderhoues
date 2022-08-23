@@ -4,10 +4,9 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const AgregarItem = ({ initial, producto, setCompra }) => {
   const [items, setItems] = useState(initial);
-  const [stock, setStock] = useState(producto.stock);
+  const [stock, setStock] = useState(producto.stocks);
   const { addItem } = useContext(myContext);
   const MySwal = withReactContent(Swal);
-
   useEffect(() => {
     stock === 0 ? setItems(0) : setItems(initial);
   }, [stock]);
@@ -25,7 +24,7 @@ const AgregarItem = ({ initial, producto, setCompra }) => {
     });
 
     setCompra(items);
-    addItem(producto.id, producto.nombre, items, producto.precio, producto.varietal, producto.stock);
+    addItem(producto.id, producto.nombre, items, producto.precio, producto.varietal, producto.stocks);
   }
 
   function sumar() {
@@ -38,7 +37,7 @@ const AgregarItem = ({ initial, producto, setCompra }) => {
   return (
     <>
       <div className="contadorContainer">
-        <h2>Stock Disponible {stock}</h2>
+        {stock === 0 ? <h2>Sin Stock </h2> : <h2>Stock Disponible {stock}</h2>}
         <div className="contador">
           <button disabled={items === 0} onClick={restar} className="btn-cont">
             -

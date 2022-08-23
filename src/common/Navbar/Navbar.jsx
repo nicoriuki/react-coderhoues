@@ -33,23 +33,9 @@ const NavBar = () => {
             Inicio
           </Link>
         </li>
-        <li className="nav__item nav__link menuDes">
-          Productos
-          <ul className="ulDespegable ">{categorias && categorias.map((item) => <Categorias key={item.id} categorias={item} />)}</ul>
-        </li>
-        <li className="nav__item">
-          <Link to={"/nosotros"} className="nav__link ">
-            Nosotros
-          </Link>
-        </li>
-        <li className="nav__item">
-          <Link to={"/contacto"} className="nav__link ">
-            Contacto
-          </Link>
-        </li>
+        {categorias && categorias.map((item) => <Categorias key={item.id} categorias={item} />)}
       </ul>
       <div className="icon">
-        {" "}
         <CartWidget />
       </div>
     </nav>

@@ -464,3 +464,9 @@ tfoot {
 .checkout-btn {
   text-align: center;
   margin-top: 20px; }
+
+.orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px; }

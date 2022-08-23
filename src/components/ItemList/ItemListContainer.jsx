@@ -7,7 +7,7 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
   const { categoria } = useParams();
-  const categoriaId = parseInt(categoria);
+  const categoriaId = categoria;
 
   useEffect(() => {
     const db = getFirestore();

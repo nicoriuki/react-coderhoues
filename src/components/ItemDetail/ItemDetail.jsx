@@ -1,11 +1,14 @@
 import AgregarItem from "../AgregarItem";
 import { useState } from "react";
 import Terminar from "./../Terminar";
-
+import { myContext } from "../CartContext";
+import { useContext } from "react";
 const ItemDetail = ({ detail }) => {
+  const { stockTotal } = useContext(myContext);
   const { imagen, nombre, bodega, precio, stock, varietal, region, valle, crianza, tiempo, enologo, descripcion, notas, id } = detail;
   const [compra, setCompra] = useState();
-
+  let stocks = stockTotal(id, stock);
+  console.log(stocks);
   return (
     <>
       <div className="detalleProducto">
@@ -23,7 +26,7 @@ const ItemDetail = ({ detail }) => {
                 <p className="precio">${precio}</p>
               </div>
             </div>
-            {!compra ? <AgregarItem initial={1} producto={{ stock, nombre, id, precio, varietal }} setCompra={setCompra} /> : <Terminar />}
+            {!compra ? <AgregarItem initial={1} producto={{ stocks, nombre, id, precio, varietal }} setCompra={setCompra} /> : <Terminar />}
           </div>
         </div>
         <div className="detalleProducto__detalles">
