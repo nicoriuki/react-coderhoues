@@ -64,7 +64,7 @@ const Checkout = () => {
     }
   };
   const comprobarName = () => {
-    const regexName = /^[A-ZÁÉÍÓÚ][a-zñáéíóú]+$/;
+    const regexName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]+$/;
     if (name.length <= 3 || !regexName.test(name)) {
       errorname.current.classList.add("incorrecto");
       errorNameMsg.current.classList.remove("hide");
