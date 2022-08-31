@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { myContext } from "../components/CartContext";
 import { useContext } from "react";
-import { collection, addDoc, getFirestore, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, getFirestore } from "firebase/firestore";
 import Order from "./Order";
 
 const Checkout = () => {
@@ -10,49 +10,73 @@ const Checkout = () => {
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
   const [idCompra, setIdCompra] = useState();
+  const [datosValidosEmail, setDatosValidosEmail] = useState(false);
+  const [datosValidosTel, setDatosValidosTel] = useState(false);
+  const [datosValidosName, setDatosValidosName] = useState(false);
+  const errormail = useRef(null);
+  const errortel = useRef(null);
+  const errorname = useRef(null);
+  const errorMailMsg = useRef(null);
+  const errorTelMsg = useRef(null);
+  const errorNameMsg = useRef(null);
+
+  useEffect(() => {
+    comprobarEmail();
+    comprobarTel();
+    comprobarName();
+  }, [email, tel, name]);
+
   function terminarCompra() {
     const order = { buyer: { name, tel, email }, cart, total: total };
     const db = getFirestore();
     const refCollection = collection(db, "orders");
-
     addDoc(refCollection, order).then((res) => {
       setIdCompra(res.id);
-      /* cart.map((item) => updateDoc(doc(db, "productos", item.id), { stock: item.stock + item.cantidad })); */
     });
     clear();
   }
-  /*  if (cart.length === 0) {
-    return (
-      <>
-        <div>no hay carrito</div>
-      </>
-    );
-  } */
-  const handleChangeName = (e) => {
-    if (e.target.value.match("^[a-zA-Z ]*$") != null) {
-      setName(e.target.value);
+  const comprobarEmail = () => {
+    const regexEmail = /\S+@\S+\.\S+/;
+    if (email === "" || !regexEmail.test(email)) {
+      errormail.current.classList.add("incorrecto");
+      errorMailMsg.current.classList.remove("hide");
+      setDatosValidosEmail(false);
+      console.log(datosValidosEmail);
     } else {
-      console.log("nooo");
+      errormail.current.classList.remove("incorrecto");
+      errorMailMsg.current.classList.add("hide");
+      setDatosValidosEmail(true);
+      console.log(datosValidosEmail);
+      return true;
     }
   };
-  const handleChangeTel = (e) => {
-    if (e.target.value.match("^[0-9]*(.?)[ 0-9]+$") != null) {
-      setTel(e.target.value);
+  const comprobarTel = () => {
+    const regexTel = /^[0-9]+$/;
+    if (tel.length <= 5 || !regexTel.test(tel)) {
+      errortel.current.classList.add("incorrecto");
+      errorTelMsg.current.classList.remove("hide");
+      setDatosValidosTel(false);
     } else {
-      console.log("nooo");
+      errortel.current.classList.remove("incorrecto");
+      errorTelMsg.current.classList.add("hide");
+      setDatosValidosTel(true);
+      return true;
     }
   };
-  function isValidEmail(email) {
-    return /\S+@\S+\.\S+/.test(email);
-  }
-
-  const handleChangeEmail = (event) => {
-    if (!isValidEmail(event.target.value)) {
-      console.log("niii");
+  const comprobarName = () => {
+    const regexName = /^[A-ZÁÉÍÓÚ][a-zñáéíóú]+$/;
+    if (name.length <= 3 || !regexName.test(name)) {
+      errorname.current.classList.add("incorrecto");
+      errorNameMsg.current.classList.remove("hide");
+      setDatosValidosName(false);
+    } else {
+      errorname.current.classList.remove("incorrecto");
+      errorNameMsg.current.classList.add("hide");
+      setDatosValidosName(true);
+      return true;
     }
-
-    setEmail(event.target.value);
   };
+
   return (
     <>
       {!idCompra ? (
@@ -61,20 +85,28 @@ const Checkout = () => {
             <h2>Checkout</h2>
           </div>
           <div className="checkout-input">
-            <input type={"text"} placeholder="nombre" value={name} onChange={(e) => handleChangeName(e)} />
+            <input type={"text"} ref={errorname} placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
+          </div>
+          <div className="datoError hide" ref={errorNameMsg}>
+            Nombre incompleto (Tiene que tener mas de 4 caracteres)
           </div>
           <div className="checkout-input">
-            <input type={"tel"} placeholder="telefono" value={tel} onChange={(e) => handleChangeTel(e)} />
+            <input type={"tel"} ref={errortel} placeholder="Telefono" value={tel} onChange={(e) => setTel(e.target.value)} />
+          </div>
+          <div className="datoError hide" ref={errorTelMsg}>
+            Ingrese solo numeros Minimo 6 caracteres
           </div>
           <div className="checkout-input">
-            <input type={"email"} placeholder="email" value={email} onChange={(e) => handleChangeEmail(e)} />
+            <input ref={errormail} type={"email"} placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div className="datoError hide" ref={errorMailMsg}>
+            Por Favor ingrese un Formato de mail Correcto
           </div>
           <div className="checkout-btn">
-            <button className="btnVaciar" onClick={terminarCompra}>
+            <button disabled={!datosValidosEmail || !datosValidosName || !datosValidosTel} className="btnVaciar" onClick={terminarCompra}>
               Terminar
             </button>
           </div>
-          <div className="checkout-input">{idCompra && <p>Tu id de compra es {idCompra}</p>}</div>
         </div>
       ) : (
         <Order idOrder={idCompra} />

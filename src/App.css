@@ -28,6 +28,13 @@
     .terminar button:hover {
       background: darkkhaki; }
 
+.datoError {
+  color: red;
+  font-size: 13px; }
+
+.hide {
+  display: none; }
+
 .nav {
   grid-area: nav;
   background-color: #bf930d;
@@ -96,20 +103,12 @@
   padding: 2px;
   box-shadow: 0px 2px 19px 0px rgba(0, 0, 0, 0.75); }
 
-.ulDespegable {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  padding: 0;
-  list-style: none; }
-
 .liDespegable {
   background-color: #bf930d;
   float: none;
   width: 100%; }
 
-.menuDes:hover > ul {
+.MenuDespegable {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -120,23 +119,55 @@
   background-color: #26200c !important;
   color: aliceblue !important; }
 
+.division {
+  margin-left: 100px;
+  margin-right: 100px; }
+
 .main {
   grid-area: main;
   /*   margin-bottom: 100px; */ }
 
 .footer {
-  grid-area: footer;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding-top: 10px;
   height: 50px;
+  width: 100%;
   color: #ebeff2;
   background-color: #0d0d0d;
-  position: fixed;
   bottom: 0;
-  width: 100%; }
+  position: fixed;
+  margin-top: 50px; }
+
+.footer__inconos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none; }
+  .footer__inconos li {
+    margin-left: 25px; }
+
+.icono, .facebook, .whatsapp, .instagram, .twitter {
+  height: 3vh;
+  width: 3vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: transform 2s ease-in-out; }
+  .icono:hover, .facebook:hover, .whatsapp:hover, .instagram:hover, .twitter:hover {
+    transform: scale(1.3) rotate(360deg); }
+
+.whatsapp {
+  background-image: url(../public/assets/whatsapp.png); }
+
+.instagram {
+  background-image: url(../public/assets/instagram.png); }
+
+.facebook {
+  background-image: url(../public/assets/facebook.png); }
 
 .linkCard {
   text-decoration: none;
@@ -250,26 +281,55 @@
   grid-template-areas: "tabla1 tabla2";
   grid-template-columns: 0.5fr 1fr; }
 
-.table1,
-.table2 {
+.table1 {
   grid-area: tabla1;
   table-layout: fixed;
   width: 100%;
   border-collapse: separate;
   border-spacing: 10px 5px; }
-  .table1 tr,
+  .table1 tr {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin-right: 10%; }
+  .table1 th {
+    width: 150px; }
+  .table1 td {
+    text-align: center;
+    padding-left: 20px; }
+
+.table2 {
+  grid-area: tabla2;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 10px 5px; }
   .table2 tr {
     float: left;
     width: 100%;
     border-bottom: 1px solid #ccc;
     margin-right: 10%; }
-  .table1 th,
   .table2 th {
     width: 150px; }
-  .table1 td,
   .table2 td {
     text-align: center;
     padding-left: 20px; }
+
+@media screen and (max-width: 500px) {
+  .detalleProducto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+  .tablas {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* grid-template-areas:
+      "tabla1 "
+      "tabla2"; */ } }
 
 .contadorContainer {
   text-align: center;
@@ -444,7 +504,8 @@ tfoot {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  margin-bottom: 70px; }
   .checkout div {
     text-align: center;
     margin-top: 20px; }
@@ -459,14 +520,36 @@ tfoot {
   margin-top: 20px; }
   .checkout-input input {
     border: 1px solid black;
-    font-size: 20px; }
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 7px; }
 
 .checkout-btn {
   text-align: center;
   margin-top: 20px; }
 
+.incorrecto {
+  border: 1px solid red !important;
+  color: red; }
+
 .orders {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px; }
+  margin-top: 30px;
+  border: 1px solid black; }
+
+.order {
+  margin-top: 10px; }
+
+.orders_productos {
+  padding: 10px;
+  border: 1px solid black; }
+
+.orders__total {
+  border: 1px solid black;
+  margin-bottom: 50px;
+  padding: 5px; }
+  .orders__total span {
+    color: red;
+    font-weight: 800; }

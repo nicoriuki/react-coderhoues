@@ -1,14 +1,40 @@
 import { createContext, useState, useEffect } from "react";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 export const myContext = createContext();
 
 export default function CartContext({ children }) {
   const [cart, setCart] = useState([]);
   const [cantidad, setCantidad] = useState(0);
+  const [screen, setScreen] = useState(window.innerWidth);
+  const [categorias, setCategorias] = useState([]);
+
   const total = cart.reduce((total, cartItem) => total + cartItem.precio * cartItem.cantidad, 0);
   useEffect(() => {
     JSON.parse(localStorage.getItem("cart")) && setCart(JSON.parse(localStorage.getItem("cart")));
   }, []);
+  useEffect(() => {
+    const db = getFirestore();
 
+    const refAcollection = collection(db, "categorias");
+    getDocs(refAcollection).then((res) => {
+      let objeto = res.docs;
+
+      objeto = objeto.map((item) => {
+        return { ...item.data(), id: item.id };
+      });
+      setCategorias(objeto);
+    });
+  }, []);
+  useEffect(() => {
+    function handleResize() {
+      setScreen(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
   const addItem = (id, nombre, cantidad, precio, varietal, stock) => {
     const nuevoProd = { id, nombre, cantidad, precio, varietal, stock };
     if (isInCart(id)) {
@@ -63,7 +89,7 @@ export default function CartContext({ children }) {
   };
   return (
     <>
-      <myContext.Provider value={{ cart, cantidad, setCart, addItem, clear, removeItem, isInCart, modificarCantidad, total, stockTotal }}>{children}</myContext.Provider>
+      <myContext.Provider value={{ cart, cantidad, setCart, addItem, clear, removeItem, isInCart, modificarCantidad, total, stockTotal, screen, categorias }}>{children}</myContext.Provider>
     </>
   );
 }

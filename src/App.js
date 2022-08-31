@@ -10,6 +10,7 @@ import Cart from "./components/Cart";
 import CuatroCientosCuatro from "./components/404";
 import CartContext from "./components/CartContext";
 import Checkout from "./components/Checkout";
+import MenuDespegable from "./common/Navbar/MenuDespegable";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/cart/" element={<Cart />} />
+            <Route path="/MenuDespegable/" element={<MenuDespegable />} />
             <Route path="/*" element={<CuatroCientosCuatro />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>

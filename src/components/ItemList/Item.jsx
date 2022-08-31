@@ -19,7 +19,7 @@ const Item = ({ item }) => {
               <div>
                 <p className="iCard__text ">{descripcion}</p>
               </div>
-              <div className="iCard__footer ">{stockTotal(id, stock) === 0 ? <p>Sin Stock </p> : <p>Unidades disponibles{stockTotal(id, stock)}</p>}</div>
+              <div className="iCard__footer ">{stockTotal(id, stock) === 0 ? <p>Sin Stock </p> : <p>Unidades disponibles: {stockTotal(id, stock)}</p>}</div>
             </div>
           </div>
         </article>
