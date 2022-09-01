@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 export const myContext = createContext();
 
-export default function CartContext({ children }) {
+function CartContext({ children }) {
   const [cart, setCart] = useState([]);
   const [cantidad, setCantidad] = useState(0);
   const [screen, setScreen] = useState(window.innerWidth);
@@ -93,3 +93,4 @@ export default function CartContext({ children }) {
     </>
   );
 }
+export default CartContext;

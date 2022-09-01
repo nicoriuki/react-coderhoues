@@ -4,8 +4,6 @@ import NavBar from "./common/Navbar/Navbar";
 import ItemDetailContainer from "./components/ItemDetail/ItemDetailContainer";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Nosotros from "./components/Nosotros";
-import Contacto from "./components/Contacto";
 import Cart from "./components/Cart";
 import CuatroCientosCuatro from "./components/404";
 import CartContext from "./components/CartContext";
@@ -22,8 +20,6 @@ function App() {
             <Route path="/" element={<ItemListContainer />} />
             <Route path="/categoria/:categoria" element={<ItemListContainer />} />
             <Route path="/id/:productId" element={<ItemDetailContainer />} />
-            <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/contacto" element={<Contacto />} />
             <Route path="/cart/" element={<Cart />} />
             <Route path="/MenuDespegable/" element={<MenuDespegable />} />
             <Route path="/*" element={<CuatroCientosCuatro />} />
